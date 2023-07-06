@@ -2,7 +2,7 @@
 
 tmux kill-server
 
-tmux new 
+tmux new-session -d -s deploy
 
 git fetch && git reset origin/main --hard
 
