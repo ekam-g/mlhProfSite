@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from peewee import *
@@ -47,7 +48,8 @@ class TimelinePost(Model):
     name = CharField()
     email = CharField()
     content = TextField()
-    created_at = DataTimeField(default=datetime.datatime.now
+    created_at = DateTimeField(default=datetime.datetime.now)
+
     class Meta:
         database = mydb
 
@@ -63,12 +65,12 @@ def post_time_line_post():
     timeline_post = TimelinePost.create(name=name,email=email,content=content)
     return model_to_dict(timeline_post)
 
-@app.route('/api/timeline_post', mothods=['GET'])
+@app.route('/api/timeline_post', methods=['GET'])
 def get_time_line_post():
-    return (
+    return {
         'timeline_posts': [
             model_to_dict(p)
             for p in 
 TimelinePost.select().order_by(TimelinePost.created_at_desc())
         ]
-    )
+    }
