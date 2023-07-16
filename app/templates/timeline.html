@@ -81,8 +81,7 @@
     function submitForm() {
       var form = document.getElementById('timelineForm');
       var formData = new FormData(form);
-
-      fetch('http://localhost:5000/api/timeline_post', {
+      fetch('http://ekammlhprofile.duckdns.org:5000/api/timeline_post', {
         method: 'POST',
         body: formData
       })
