@@ -3,6 +3,7 @@ import datetime
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from peewee import *
+from playhouse.shortcuts import model_to_dict
 
 load_dotenv()
 app = Flask(__name__)
