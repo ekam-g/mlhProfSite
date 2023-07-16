@@ -42,50 +42,15 @@
     <div class="profile">
         <h1>{{ title }}</h1>
     </div>
-
-    <div class="block">
-        <img width="25%" height="25%" src="./static/img/work.jpg">
-        <div class="text">
-            <h2>
-                My Past Work Experience
-            </h2>
-            <h3>
-                - Software Engineer Ziplyne · Internship | Jun 2023 - Present | New York, United States · Remote   <br>
-                - Software Engineer Major League Hacking · Fellowship | Mar 2023 - Present | New York, United States · Remote<br>
-                - Lead Teacher The Coder School New Jersey · Full-time | Jul 2022 - Present |  New Jersey, United States · On-site<br>
-            </h3>
-        </div>
-    </div>
-    <div class="block">
-        <img height="20%" width="20%" src="./static/img/project1.jpg" alt="project png">
-        <div class="text">
-            <h2>
-                Globalssh
-            </h2>
-            <h3>SSH can be difficult to set up and maintain, requiring software installation and configuration on both local and
-                remote systems, as well as firewall and access control configuration. Global SSH removes this complexity,
-                making it accessible to non-technical users.</h3>
-            <h3>Moreover, Global SSH is more scalable than SSH, particularly in larger networks. With SSH, configuring and
-                managing port forwarding settings becomes increasingly challenging as the network grows. Any changes or updates
-                to port forwarding settings must be made on each device individually, which can be time-consuming and
-                error-prone. In contrast, Global SSH requires only a Redis database to handle connections and can be easily
-                scaled by creating new free accounts.</h3>
-            <h3> In summary, Global SSH offers an easier, more secure, and scalable alternative to SSH, with a simple setup
-                process and minimal maintenance overhead. <br> link: https://github.com/carghai/globalssh
-            </h3>
-        </div>
-    </div>
+    {% for post in data %}
     <div class="block">
         <div class="text">
-            <h2>
-                Cougar Scouting App
-            </h2>
-            <h3>Cougar Scouting App is an application that streamlines the process of scouting and finding the best team for
-                Strat Captains. It retrieves data from other teams, allowing users to easily access information about their
-                performance in their last game or past games.</h3>
+            <h2>{{ post.name }}</h2>
+            <h3>{{ post.email }}</h3>
+            <p>{{ post.content }}</p>
+            <p>{{ post.created_at }}</p>
         </div>
-        <img height="20%" width="20%" src="./static/img/project2.jpg" alt="project png">
     </div>
-
+    {% endfor %}
 </body>
 </html>
