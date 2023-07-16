@@ -8,7 +8,7 @@
     <meta property="og:title" content="Personal Portfolio">
     <meta property="og:description" content="My Personal Portfolio">
     <meta property="og:url" content="{{ url }}">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -44,13 +44,61 @@
     </div>
     {% for post in data %}
     <div class="block">
+        <img width="70x" height="70px" src="./static/img/person.png">
         <div class="text">
-            <h2>{{ post.name }}</h2>
-            <h3>{{ post.email }}</h3>
+            <h2>By: {{ post.name }}</h2>
+            <h3>At: {{ post.email }}</h3>
             <p>{{ post.content }}</p>
             <p>{{ post.created_at }}</p>
         </div>
     </div>
     {% endfor %}
+    <div class="block">
+        <div class="text">
+            <h2>Add New Post</h2>
+             <form id="timelineForm">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea class="form-control" id="content" name="content" required></textarea>
+              </div>
+
+              <button type="button" class="btn btn-primary btn-submit" onclick="submitForm()">Submit</button>
+            </form>
+        </div>
+
+    </div>
+<script>
+    function submitForm() {
+      var form = document.getElementById('timelineForm');
+      var formData = new FormData(form);
+
+      fetch('http://localhost:5000/api/timeline_post', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          location.reload(); // Refresh the screen
+        } else {
+          alert('Submission Failed, Please Try Again Later');
+        }
+      })
+      .catch(error => {
+        alert('An error occurred while submitting the form.');
+        console.error(error);
+      });
+    }
+  </script>
 </body>
 </html>
