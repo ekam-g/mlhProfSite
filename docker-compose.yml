@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mlhProfSite:
+    container_name: mlhProfSite
+    build: .
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/mlhProfSite
+    depends_on:
+      - mysql
+  mysql:
+    container_name: mysql
+    image: mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mydatabase:/var/lib/mysql
+volumes:
+  mydatabase:
+
