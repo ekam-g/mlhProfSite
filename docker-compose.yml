@@ -1,6 +1,6 @@
 version: "3"
 services:
-  mlhProfSite:
+  mlhprofsite:
     container_name: mlhProfSite
     build: .
     restart: always
