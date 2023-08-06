@@ -13,6 +13,6 @@ docker stop $(docker ps -a -q)
 # shellcheck disable=SC2046
 docker rm $(docker ps -a -q)
 
-docker compose -f docker-compose.prod.yml down
+docker compose -f docker-compose.yml down
 
-docker compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.yml up -d --build
