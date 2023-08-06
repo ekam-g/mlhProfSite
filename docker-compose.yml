@@ -1,7 +1,7 @@
 version: "3"
 services:
-  mlhprofsite:
-    container_name: mlhProfSite
+  myportfolio:
+    container_name: myportfolio
     build: .
     restart: always
     env_file:

@@ -1,7 +1,7 @@
 version: "3"
 services:
-  mlhprofsite:
-    container_name: mlhProfSite
+  myportfolio:
+    container_name: myportfolio
     build: .
     restart: always
     env_file:
@@ -31,7 +31,7 @@ services:
       - nginx_secrets:/etc/letsencrypt
       - ./user_conf.d:/etc/nginx/user_conf.d
     depends_on:
-      - mlhprofsite
+      - myportfolio
 
 volumes:
   mydatabase:
