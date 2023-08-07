@@ -23,8 +23,9 @@ else:
                                 port=3306
                                 )
             break
-        except:
+        except Exception as e:
             time.sleep(1)
+            print(e)
 
 
 print(mydb)
