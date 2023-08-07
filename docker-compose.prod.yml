@@ -16,7 +16,7 @@ services:
     env_file:
       - .env
     environment:
-      MARIADB_ROOT_PASSWORD: mypassword
+      MARIADB_ROOT_PASSWORD: myrootpassword
     volumes:
       - mydatabase:/var/lib/mysql
 
