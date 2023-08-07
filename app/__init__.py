@@ -72,6 +72,7 @@ class TimelinePost(Model):
         database = mydb
 
 
+tried = 0
 while True:
     try:
         mydb.connect()
@@ -80,6 +81,10 @@ while True:
     except Exception as e:
         time.sleep(1)
         print(e)
+        tried = tried + 1
+        if tried == 100:
+            raise e
+
 
 # api
 
