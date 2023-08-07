@@ -17,16 +17,15 @@ else:
     while True:
         try:
             mydb = MySQLDatabase(os.getenv("MYSQl_DATABASE"),
-                                user=os.getenv("MYSQL_USER"),
-                                password=os.getenv("MYSQL_PASSWORD"),
-                                host=os.getenv("MYSQL_HOST"),
-                                port=3306
-                                )
+                                 user=os.getenv("MYSQL_USER"),
+                                 password=os.getenv("MYSQL_PASSWORD"),
+                                 host=os.getenv("MYSQL_HOST"),
+                                 port=3306
+                                 )
             break
         except Exception as e:
             time.sleep(1)
             print(e)
-
 
 print(mydb)
 
@@ -73,9 +72,14 @@ class TimelinePost(Model):
         database = mydb
 
 
-mydb.connect()
-mydb.create_tables([TimelinePost])
-
+while True:
+    try:
+        mydb.connect()
+        mydb.create_tables([TimelinePost])
+        break
+    except Exception as e:
+        time.sleep(1)
+        print(e)
 
 # api
 
