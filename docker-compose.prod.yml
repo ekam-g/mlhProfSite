@@ -31,7 +31,7 @@ services:
       - 443:443
     volumes:
       - nginx_secrets:/etc/letsencrypt
-      - /root/mlhProfSite/user_conf.d/myportfolio.conf
+      - ./user_conf.d:/etc/nginx/user_conf.d
     depends_on:
       - myportfolio
 
