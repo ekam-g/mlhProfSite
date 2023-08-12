@@ -15,8 +15,8 @@ services:
     restart: always
     env_file:
       - .env
-#    environment:
-#      MARIADB_ROOT_PASSWORD: myrootpassword
+    environment:
+      MARIADB_ROOT_PASSWORD: myrootpassword
     volumes:
       - mydatabase:/var/lib/mysql
 
