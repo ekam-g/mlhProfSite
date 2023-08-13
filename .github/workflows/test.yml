@@ -11,13 +11,13 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem 
-          chmod 600 ~/.ssh/deploy-key.pem
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          echo "$KNOWN_HOSTS_OLD" > ~/.ssh/known_hosts.old
+          chmod 600 ~/.ssh/known_hosts.old
           cat >> ~/.ssh/config <<END
-          Host my-vps
-            HostName $SSH_IP
-            User $SSH_USER
-            IdentityFile ~/.ssh/deploy-key.pem StrictHostKeyChecking no
           END
         env:
           KNOWN_HOSTS : ${{ secrets.KNOWN_HOSTS }}
@@ -27,6 +27,13 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
       - name: Print project root directory
         run: |
-          ssh my-vps 
+          ssh $SSH_USER @ $SSH_IP
           cd ${{ secrets.PROJECT_ROOT }}
-          pwd
+          ./redeploy.sh
+          END
+        env:
+          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+          KNOWN_HOSTS_OLD: ${{ secrets.KNOWN_HOSTS_OLD }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_IP: ${{ secrets.SSH_IP }}
