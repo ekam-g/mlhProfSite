@@ -26,7 +26,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
       - name: Print project root directory
-        run: ssh -t root@162.243.169.246 'cd $PROJECT_ROOT && ./redeploy.sh && pwd'
+        run: ssh -t root@162.243.169.246 'cd ./$PROJECT_ROOT/redeploy.sh'
         env:
           $HOST_AND_USER: ${{ secrets.HOST_AND_USER }}
           $PROJECT_ROOT: ${{ secrets.PROJECT_ROOT }}
