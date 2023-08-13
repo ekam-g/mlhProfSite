@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-$PWD/python3-virtualenv/bin/python -m unittest discover -v tests/
+python3 -m unittest discover -v tests/
 
