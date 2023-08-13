@@ -27,7 +27,7 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
       - name: Print project root directory
         run: |
-          ssh $SSH_USER @ $SSH_IP
+          ssh $SSH_HOST_AND_USER
           cd ${{ secrets.PROJECT_ROOT }}
           ./redeploy.sh
           END
